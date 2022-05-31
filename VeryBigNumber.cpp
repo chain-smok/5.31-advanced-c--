@@ -1,10 +1,9 @@
 #include <iostream>
-#include <cstring>  // for strlen()
 #include <cctype>   // for isdigit()
 
 using namespace std;
 
-#define max 100
+#define max 1000
 class BigInt {
     friend ostream& operator<<(ostream& , const BigInt&);
     private:              // encaptulation
@@ -18,15 +17,15 @@ class BigInt {
               value = value / 10;
           }
       }
-      BigInt(char *str) {    // constructor with a pointer to string parameter
+      BigInt(string str) {    // constructor with a pointer to string parameter
           for(int i=0; i<max; i++)
              num[i]=0;
-          int len = strlen(str);
+          int len = str.length();
           for(int j=max-len, k=0; j<max; j++,k++){
               if (isdigit(str[k])) num[j]=str[k] - '0';
           }
       }
-      BigInt operator+(const BigInt & op2) const {   // b1=b2+b3;  b3 is parameter object 
+      BigInt operator+(const BigInt &op2) const {   // b1=b2+b3;  b3 is parameter object 
             BigInt temp;
             int carry=0;
             for(int i=(max-1); i>=0; i--)  {             // b2 is host object
@@ -49,7 +48,7 @@ ostream& operator<<(ostream& out, const BigInt & n){  // cout << b1;
     int i;                                  
     for(i=0; (n.num[i]==0) && (i<=(max-1)); i++); 
     
-    if (i==max) out << 0;
+    if (i==max) out << 0;//一直都找不到不等於0的char
     else  {
         for(; i<max; i++)
             out << n.num[i];
@@ -59,7 +58,7 @@ ostream& operator<<(ostream& out, const BigInt & n){  // cout << b1;
 
 int main(){
     BigInt b1(1234), b2(12345678);
-    BigInt b3("12345678000000000000000000000000000000000");
+    BigInt b3("1234567800000000000000000000000000000000012344556");
     cout << b1 << endl;
     cout << b2 << endl; 
     cout << b3 << endl;

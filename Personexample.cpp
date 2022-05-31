@@ -1,3 +1,10 @@
+//公有繼承（public）：當一個類派生自公有基類時，基類的公有成員也是派生類的公有成員，
+//基類的保護成員也是派生類的保護成員，基類的私有成員不能直接被派生類訪問，但是可以通
+//過呼叫基類的公有和保護成員來訪問。
+//保護繼承（protected）： 當一個類派生自保護基類時，基類的公有和保護成員將成為派生類的保護成員。
+//私有繼承（private）：當一個類派生自私有基類時，基類的公有和保護成員將成為派生類的私有成員。
+
+
 #include <iostream>
 using namespace std;
 class Person {
@@ -23,7 +30,7 @@ class Person {
           cout<<"ID="<<id<<" and name= "<<name<<endl;
       }
 };
-class Student:public Person{
+class Student: protected Person{
    private:
       double gpa;
    public:
